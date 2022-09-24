@@ -11,9 +11,12 @@ jobs:
       - checkout
       - run: wget https://repo-default.voidlinux.org/static/xbps-static-latest.x86_64-musl.tar.xz
       - run: mkdir ./XBPS && tar xvf xbps-static-latest.x86_64-musl.tar.xz -C ./XBPS
-      - run: export PATH=$PWD/XBPS/usr/bin:$PATH
       - run: git clone --depth 1 https://github.com/void-linux/void-packages.git
       - run: cp -fr voidlinux/mesa ./void-packages/srcpkgs/
-      - run: ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
-      - run: ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
-      - run: ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
+      - run:
+        name: Build package
+        command: |
+          export PATH=$PWD/XBPS/usr/bin:$PATH
+          ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
+          ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
+          ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
