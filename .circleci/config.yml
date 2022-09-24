@@ -1,0 +1,18 @@
+# CircleCI configuration file
+
+version: 2.1
+
+jobs:
+  build:
+    docker:
+     - image: voidlinux/voidlinux-musl
+
+    steps:
+      - run:
+          name: Only Step
+          command: |
+            git clone --depth 1 https://github.com/void-linux/void-packages.git
+            cp -fr voidlinux/mesa srcpkgs/
+            ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
+            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
+            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
