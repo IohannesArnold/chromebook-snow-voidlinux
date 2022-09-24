@@ -4,7 +4,7 @@ diff --git bin/install_megadrivers.py bin/install_megadrivers.py
 index 470137e..7d56def 100644
 --- a/bin/install_megadrivers.py
 +++ b/bin/install_megadrivers.py
-@@ -71,7 +71,7 @@ def main():
+@@ -75,7 +75,7 @@ def main():
              os.chdir(ret)
  
      # Remove meson-created master .so and symlinks
