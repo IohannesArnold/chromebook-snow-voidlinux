@@ -5,17 +5,15 @@ version: 2.1
 jobs:
   build:
     docker:
-     - image: voidlinux/voidlinux-musl
+     - image: cimg/base:2022.09
     shell: /bin/bash -eo pipefail
     steps:
+      - run: wget https://repo-default.voidlinux.org/static/xbps-static-latest.x86_64-musl.tar.xz
+      - run: tar xvf xbps-static-latest.x86_64-musl.tar.xz
+      - run: export PATH=$PWD/usr/bin:$PATH
       - checkout
-      - run:
-          name: Setup void-packages
-          command: git clone --depth 1 https://github.com/void-linux/void-packages.git
-      - run:
-          name: Build package
-          command: |
-            cp -fr voidlinux/mesa srcpkgs/
-            ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
-            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
-            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
+      - run: git clone --depth 1 https://github.com/void-linux/void-packages.git
+      - run: cp -fr voidlinux/mesa srcpkgs/
+      - run: ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
+      - run: ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
+      - run: ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
