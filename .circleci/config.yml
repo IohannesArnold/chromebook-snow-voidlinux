@@ -13,6 +13,7 @@ jobs:
       - run: mkdir ./XBPS && tar xvf xbps-static-latest.x86_64-musl.tar.xz -C ./XBPS
       - run: git clone --depth 1 https://github.com/void-linux/void-packages.git
       - run: cp -fr voidlinux/mesa ./void-packages/srcpkgs/
+      - run: echo XBPS_CHROOT_CMD=ethereal >> ./void-packages/etc/conf
       - run:
           name: Build package
           command: |
