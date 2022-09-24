@@ -14,9 +14,9 @@ jobs:
       - run: git clone --depth 1 https://github.com/void-linux/void-packages.git
       - run: cp -fr voidlinux/mesa ./void-packages/srcpkgs/
       - run:
-        name: Build package
-        command: |
-          export PATH=$PWD/XBPS/usr/bin:$PATH
-          ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
-          ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
-          ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
+          name: Build package
+          command: |
+            export PATH=$PWD/XBPS/usr/bin:$PATH
+            ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
+            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
+            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
