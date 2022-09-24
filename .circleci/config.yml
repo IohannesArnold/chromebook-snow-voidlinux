@@ -17,7 +17,7 @@ jobs:
           name: Build package
           command: |
             export PATH=$PWD/XBPS/usr/bin:$PATH
-            ./void-packages/xbps-src -m x86_64-musl binary-bootstrap x86_64-musl
             echo XBPS_CHROOT_CMD=ethereal >> ./void-packages/etc/conf
-            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl build mesa
-            ./void-packages/xbps-src -m x86_64-musl -a armv7hf-musl pkg mesa
+            ./void-packages/xbps-src binary-bootstrap
+            ./void-packages/xbps-src -a armv7hf-musl build mesa
+            ./void-packages/xbps-src -a armv7hf-musl pkg mesa
