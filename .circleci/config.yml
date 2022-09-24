@@ -6,8 +6,9 @@ jobs:
   build:
     docker:
      - image: voidlinux/voidlinux-musl
-
+    shell: /bin/bash -eo pipefail
     steps:
+      - checkout
       - run:
           name: Setup void-packages
           command: git clone --depth 1 https://github.com/void-linux/void-packages.git
