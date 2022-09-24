@@ -13,7 +13,7 @@ jobs:
       - run: mkdir ./XBPS && tar xvf xbps-static-latest.x86_64-musl.tar.xz -C ./XBPS
       - run: git clone --depth 1 https://github.com/void-linux/void-packages.git
       - run: cp -fr voidlinux/mesa ./void-packages/srcpkgs/
-      - run: sudo apt-get update && sudo apt-get install -y bwrap
+      - run: sudo apt-get update && sudo apt-get install -y bubblewrap
       - run:
           name: Build package
           command: |
